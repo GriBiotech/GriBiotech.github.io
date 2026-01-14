@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Технология — GriBiotech</title>
+  <title>GriBiotech — Интеллектуальная среда для растений</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
     .brand-img { height: 40px; width: auto; margin-right: 10px; vertical-align: middle; }
+    /* Фикс для наложения текста на видео */
+    .hero-video-full { object-fit: cover; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: -1; }
   </style>
 </head>
 <body>
@@ -28,26 +30,48 @@
     </div>
   </header>
 
-  <main class="tech-page wrap" style="padding: 80px 0;">
-    <h1>Технология 3D-матрицы</h1>
-    <p>GriBiotech создает стабильную ризосферу методом фотополимеризации («Зеленый синтез»).</p>
-    
-    
+  <main>
+    <section class="hero-fullwidth" style="position: relative; overflow: hidden; height: 100vh;">
+      <video class="hero-video-full" autoplay muted loop playsinline poster="assets/images/1.jpg">
+        <source src="assets/videos/1.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay" style="background: rgba(0,0,0,0.4); height: 100%;">
+        <div class="wrap hero-content">
+          <h1>Выращивайте.<br>Не ухаживайте.</h1>
+          <p class="hero-lead">Автономное озеленение для офисов и отелей. Полив раз в 2–3 месяца. Ноль грязи. Ноль стресса.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="contact.html">Запросить презентацию</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="tech-grid-2" style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-      <div>
-        <h3>Как это работает?</h3>
-        <p>Вместо грунта используется микропористая среда, которая удерживает воду и питательные вещества, отдавая их растению по мере необходимости. Высокая пористость гарантирует 100% доступ кислорода, исключая гниение корней.</p>
+    <section class="section-features wrap" style="padding: 80px 0;">
+      <h2 style="text-align: center; margin-bottom: 50px;">Преимущества GriBiotech</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <img src="assets/images/clean.jpg" alt="Clean" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+          <h3>Безупречная чистота</h3>
+          <p>Полный отказ от земли исключает грязь, запахи и почвенных вредителей. Идеально для медицины.</p>
+        </div>
+        <div class="feature-card">
+          <img src="assets/images/maintenance.jpg" alt="Maintenance" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+          <h3>Минимум обслуживания</h3>
+          <p>Визиты специалиста требуются всего 4-6 раз в год. Ваша команда занимается бизнесом, а не поливом.</p>
+        </div>
+        <div class="feature-card">
+          <img src="assets/images/health.jpg" alt="Health" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+          <h3>Здоровье растений</h3>
+          <p>3D-матрица исключает корневую гниль, обеспечивая 100% доступ кислорода и стабильное питание.</p>
+        </div>
       </div>
-      <div style="background: #f0fdf4; padding: 20px; border-radius: 10px;">
-        <h3>Характеристики:</h3>
-        <ul>
-          <li>Обслуживание: раз в 2-3 месяца</li>
-          <li>Экономия воды: 75%</li>
-          <li>Безопасность: 100% (биосовместимо)</li>
-        </ul>
-      </div>
-    </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <p>© GriBiotech 2026. Inspired by Nature. Built by Science.</p>
+    </div>
+  </footer>
 </body>
 </html>
