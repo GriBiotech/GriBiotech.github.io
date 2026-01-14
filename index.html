@@ -1,10 +1,10 @@
-<! doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GriBiotech — Позвольте растениям позаботиться о себе сами</title>
-  <meta name="description" content="GriBiotech — интеллектуальная среда для растений.  Автономность, чистота, экологичность.  Используют рестораны и офисы." />
+  <title>GriBiotech — Позвольте вашим растениям позаботиться о себе сами</title>
+  <meta name="description" content="GriBiotech — интеллектуальная среда для растений.  Автономность, чистота, экологичность. Используют рестораны и офисы." />
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <svg width="40" height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect width="48" height="48" rx="8" fill="#0f766e"/>
           <path d="M14 32c6-8 10-12 20-12" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <circle cx="34" cy="18" r="3. 5" fill="#b8f0e1"/>
+          <circle cx="34" cy="18" r="3.5" fill="#b8f0e1"/>
         </svg>
         <span class="brand-text">GriBiotech</span>
       </a>
@@ -24,7 +24,7 @@
         <a href="technology.html">Технология</a>
         <a href="cases.html">Кейсы</a>
         <a href="about. html">О нас</a>
-        <a href="services. html">Услуги</a>
+        <a href="services.html">Услуги</a>
         <a href="investor.html">Инвесторам</a>
         <a href="contact.html">Контакты</a>
       </nav>
@@ -36,7 +36,7 @@
     <section class="hero-fullwidth">
       <video class="hero-video-full" autoplay muted loop playsinline poster="assets/images/1.jpg">
         <source src="assets/videos/1.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
+        Ваш браузер не поддерживает видео. 
       </video>
       <div class="hero-overlay">
         <div class="wrap hero-content">
@@ -56,7 +56,7 @@
         <div class="what-text">
           <h2>Что такое GriBiotech? </h2>
           <p>Это не просто замена грунта — это программируемая интеллектуальная среда, которая дарует растениям полную автономность.  Микропористая 3D-матрица обеспечивает корни всем необходимым:  водой, питанием и кислородом.</p>
-          <p>Вместо ежедневного полива и борьбы с вредителями — чистое удовольствие от живой зелени в вашем пространстве.</p>
+          <p>Вместо ежедневного полива и борьбы с вредителями — чистое удовольствие от живой зелени в вашем пространстве. </p>
           <a href="technology.html" class="link-arrow">Подробнее о технологии →</a>
         </div>
         <div class="what-visual">
@@ -136,20 +136,14 @@
       </div>
     </section>
 
-    <!-- Галерея -->
+    <!-- Галерея (автоматическая) -->
     <section class="section-gallery">
       <div class="wrap">
         <h2>Примеры использования</h2>
-        <div class="gallery-grid">
-          <a href="assets/images/1.jpg" target="_blank" class="gallery-item">
-            <img src="assets/images/1.jpg" alt="GriBiotech в действии">
-            <div class="gallery-overlay">
-              <span>Смотреть</span>
-            </div>
-          </a>
-          <!-- Добавляйте сюда новые фото при загрузке -->
+        <div class="gallery-grid" id="gallery-container">
+          <!-- Фото загружаются сюда автоматически -->
         </div>
-        <p class="gallery-note">Загружайте фото ваших проектов через <a href="upload.html">панель загрузки</a></p>
+        <p class="gallery-note">Галерея обновляется при загрузке новых фото</p>
       </div>
     </section>
 
@@ -157,7 +151,7 @@
     <section class="section-cases-preview">
       <div class="wrap">
         <h2>Доверяют нам</h2>
-        <p class="section-subtitle">Рестораны и бизнесы выбирают GriBiotech для чистых и ухоженных зелёных пространств.</p>
+        <p class="section-subtitle">Рестораны и бизнесы выбирают GriBiotech для чистых и ухоженных зелёных пространств. </p>
         <div class="cases-preview-grid">
           <div class="case-preview-card">
             <div class="case-preview-icon">🍽️</div>
@@ -168,7 +162,7 @@
           <div class="case-preview-card">
             <div class="case-preview-icon">🌿</div>
             <h3>ЦурЦум</h3>
-            <p>Ресторан с живыми растениями, которые требуют минимального обслуживания. </p>
+            <p>Ресторан с живыми растениями, которые требуют минимального обслуживания.</p>
           </div>
 
           <div class="case-preview-card">
@@ -219,5 +213,28 @@
       <p>© GriBiotech — Все права защищены</p>
     </div>
   </footer>
+
+  <script>
+    // Автоматическое отображение всех фото из assets/images/
+    fetch('https://api.github.com/repos/GriBiotech/GriBiotech.github.io/contents/assets/images')
+      .then(res => res.json())
+      .then(files => {
+        const gallery = document.getElementById('gallery-container');
+        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f. name));
+        
+        imageFiles.forEach(file => {
+          const img = document.createElement('a');
+          img.href = `assets/images/${file.name}`;
+          img.target = '_blank';
+          img. className = 'gallery-item';
+          img.innerHTML = `
+            <img src="assets/images/${file.name}" alt="Фото ${file. name}">
+            <div class="gallery-overlay"><span>Смотреть</span></div>
+          `;
+          gallery.appendChild(img);
+        });
+      })
+      .catch(err => console.log('Галерея загружается вручную'));
+  </script>
 </body>
 </html>
