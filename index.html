@@ -3,62 +3,105 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GriBiotech — Биотехнологии и продукты</title>
-  <meta name="description" content="GriBiotech — решения в биотехнологиях. Контакты и портфолио." />
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; color:#033; }
-    header { background:linear-gradient(90deg,#2dd4bf,#0891b2); color:white; padding:48px 16px; text-align:center; }
-    .container { max-width:1000px; margin:28px auto; padding:0 16px; }
-    h1 { margin:0 0 8px; font-size:2.2rem; }
-    p.lead { margin:0 0 18px; font-size:1.05rem; opacity:0.95; }
-    .cta { display:inline-block; background:#052; color:white; padding:12px 18px; border-radius:8px; text-decoration:none; margin-top:10px; }
-    section { margin:28px 0; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
-    .card { border:1px solid #e6f0f0; padding:16px; border-radius:10px; background:white; box-shadow:0 4px 12px rgba(3,7,18,0.03); }
-    footer { text-align:center; color:#667; font-size:0.9rem; padding:28px 8px; }
-  </style>
+  <title>GriBiotech — Позвольте вашим растениям позаботиться о себе сами</title>
+  <meta name="description" content="GriBiotech — программируемая интеллектуальная среда для растений: автономность, чистота и экологичность." />
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>GriBiotech</h1>
-      <p class="lead">Инновации в биотехнологиях — разработки, продукты и сотрудничество.</p>
-      <a class="cta" href="mailto:info@gribiotech.io">Связаться: info@gribiotech.io</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <svg width="40" height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="48" height="48" rx="8" fill="#0f766e"/>
+          <path d="M14 32c6-8 10-12 20-12" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="34" cy="18" r="3.5" fill="#b8f0e1"/>
+        </svg>
+        <span class="brand-text">GriBiotech</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="services.html">Услуги</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section>
-      <h2>Услуги</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Исследования</h3>
-          <p>Научные исследования, разработка протоколов и лабораторные услуги под ключ.</p>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <h1>Позвольте вашим растениям позаботиться о себе сами</h1>
+          <p class="lead">Интеллектуальная среда GriBiotech заменяет традиционный грунт и делает растения практически автономными — наслаждайтесь зеленью без рутины.</p>
+          <p>
+            <a class="btn" href="contact.html">Связаться</a>
+            <a class="btn btn-outline" href="services.html">Узнать услуги</a>
+          </p>
         </div>
-        <div class="card">
-          <h3>Проекты</h3>
-          <p>Разработка биоинформатических инструментов и интеграция данных.</p>
-        </div>
-        <div class="card">
-          <h3>Консалтинг</h3>
-          <p>Консультируем по внедрению биотехнологических решений и регуляторике.</p>
+        <div class="hero-illustration" aria-hidden="true">
+          <svg width="320" height="200" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="320" height="200" rx="12" fill="#e6fffa"/>
+            <g fill="#0f766e" opacity="0.12">
+              <circle cx="60" cy="60" r="36"/>
+              <circle cx="160" cy="100" r="48"/>
+              <circle cx="260" cy="70" r="30"/>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>О нас</h2>
-      <p>GriBiotech — команда специалистов в биотехнологиях, стремящаяся переводить исследования в практические продукты.</p>
+    <section class="wrap features">
+      <h2>Ключевые преимущества</h2>
+
+      <article class="feature">
+        <h3>Полная автономность — свобода от ежедневного полива</h3>
+        <p>GriBiotech делает уход практически ненужным: растения в нашей среде требуют полива всего около двух раз в год. Это позволяет спокойно уезжать в отпуск или не беспокоиться о поливе во время командировок.</p>
+      </article>
+
+      <article class="feature">
+        <h3>Умная система «3-в-1» — вода, питание и кислород</h3>
+        <p>Матрица GriBiotech — микропористая 3D-структура, которая одновременно:</p>
+        <ul>
+          <li>удерживает запас влаги, доступный растению по потребности;</li>
+          <li>встроенный комплекс минеральных веществ обеспечивает питание на месяцы;</li>
+          <li>обеспечивает постоянный приток кислорода к корням, предотвращая корневую гниль.</li>
+        </ul>
+      </article>
+
+      <article class="feature">
+        <h3>Безупречная чистота в вашем пространстве</h3>
+        <p>Отсутствие земли означает: никакой грязи, никаких запахов сырости и почти полное исчезновение почвенных вредителей. Идеально для офисов, клиник и стильных интерьеров.</p>
+      </article>
+
+      <article class="feature">
+        <h3>Экологичность — забота о планете</h3>
+        <p>GriBiotech сокращает расход воды до 75% по сравнению с обычным грунтом. Производство использует безопасные методы (например, фотополимеризацию) и биосовместимые компоненты.</p>
+      </article>
     </section>
 
-    <section>
-      <h2>Контакты</h2>
-      <p>Почта: <a href="mailto:info@gribiotech.io">info@gribiotech.io</a></p>
+    <section class="wrap how">
+      <h2>Как это работает — три простых шага</h2>
+      <ol>
+        <li><strong>Интеграция:</strong> корни аккуратно очищаются от старого грунта и помещаются в кашпо с активной средой GriBiotech.</li>
+        <li><strong>Адаптация:</strong> корневая система начинает взаимодействовать с матрицей и самостоятельно забирает воду и питание по потребности.</li>
+        <li><strong>Результат:</strong> вы получаете здоровое, активно растущее растение без ежедневной заботы.</li>
+      </ol>
+    </section>
+
+    <section class="wrap cta">
+      <h2>Готовы перейти на умный уход?</h2>
+      <p>Свяжитесь с нами: <a href="mailto:esderhov@gmail.com">esderhov@gmail.com</a> • <a href="tel:+79037117997">+7 903 711‑79‑97</a></p>
+      <p><a class="btn" href="contact.html">Контакты и запрос</a></p>
     </section>
   </main>
 
-  <footer>
-    © GriBiotech — Все права защищены
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© GriBiotech — Все права защищены</p>
+      <p>Email: <a href="mailto:esderhov@gmail.com">esderhov@gmail.com</a> • Телефон: <a href="tel:+79037117997">+7 903 711‑79‑97</a></p>
+    </div>
   </footer>
 </body>
 </html>
