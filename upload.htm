@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Загрузка медиа — GriBiotech</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:18px;color:#0b2}
+    .wrap{max-width:880px;margin:0 auto}
+    h1{color:#0f766e}
+    label{display:block;margin-top:12px;font-weight:600}
+    input[type="text"], input[type="password"], select {width:100%;padding:8px;border-radius:8px;border:1px solid #dfe; margin-top:6px}
+    .row{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .btn{background:#0f766e;color:white;padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;color:#0f766e;border:1px solid #cfe;padding:9px}
+    .log{background:#f6fffc;border:1px solid #e6f7f0;padding:12px;margin-top:14px;border-radius:8px;white-space:pre-wrap;font-family:monospace}
+    .small{font-size:0.9rem;color:#567}
+    .note{margin-top:10px;color:#666}
+    .footer{margin-top:18px;color:#667;font-size:0.9rem}
+    input[type=file]{margin-top:8px}
+    .checkbox{display:inline-block;margin-left:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Панель загрузки медиа — GriBiotech</h1>
+    <p class="small">Загрузите фото и видео в папки <code>assets/images</code> или <code>assets/videos</code> репозитория. Для загрузки нужен Personal Access Token GitHub (public_repo).</p>
+
+    <label for="token">GitHub token (вставьте сюда — хранится только в вашем браузере)</label>
+    <input id="token" type="password" placeholder="ghp_xxx...">
+
+    <label for="branch">Ветка для коммитов</label>
+    <input id="branch" type="text" value="main" placeholder="main">
+
+    <label for="folder">Куда загружать (папка)</label>
+    <select id="folder">
+      <option value="images">assets/images</option>
+      <option value="videos">assets/videos</option>
+    </select>
+
+    <label for="files">Файлы для загрузки (можно несколько)</label>
+    <input id="files" type="file" multiple>
+
+    <div class="row">
+      <button id="uploadBtn" class="btn">Upload</button>
+      <button id="clearBtn" class="btn secondary">Очистить токен</button>
+      <label class="checkbox"><input id="addToGallery" type="checkbox"> Автоматически добавить фото в галерею на главной</label>
+    </div>
+
+    <div id="log" class="log" aria-live="polite"></div>
+
+    <div class="note">
+      <strong>Важно:</strong> не публикуйте токен в чат. Рекомендуется удалить токен после использования.
+    </div>
+
+    <div class="footer">
+      Если будет ошибка — скопируйте текст логов и пришлите мне, я помогу.
+    </div>
+  </div>
+
+<script>
+/* Конфигурация — замените owner/repo, если у вас другой */
+const OWNER = "GriBiotech";
+const REPO = "GriBiotech.github.io";
+
+const logEl = document.getElementById('log');
+function log(...args){ logEl.textContent += args.join(' ') + "\n"; logEl.scrollTop = logEl.scrollHeight; }
+
+async function fileToBase64(file){
+  return await new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // reader.result = "data:...;base64,AAAA"
+      const s = reader.result;
+      const comma = s.indexOf(',');
+      res(s.slice(comma+1));
+    };
+    reader.onerror = () => rej(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+async function getFileSha(path, token, branch){
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`;
+  const resp = await fetch(url, { headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" } });
+  if (resp.status === 200){
+    const j = await resp.json();
+    return j.sha;
+  }
+  return null;
+}
+
+async function putFile(path, contentBase64, token, branch, message, sha=null){
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(path)}`;
+  const body = { message, content: contentBase64, branch };
+  if (sha) body.sha = sha;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" },
+    body: JSON.stringify(body)
+  });
+  const j = await resp.json();
+  return { status: resp.status, json: j };
+}
+
+async function getIndex(branch, token){
+  const path = "index.html";
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`;
+  const resp = await fetch(url, { headers: { Authorization: "token " + token, Accept: "application/vnd.github.v3+json" } });
+  if (resp.status !== 200) return { ok:false, status: resp.status, json: await resp.json().catch(()=>null) };
+  const j = await resp.json();
+  const content = atob(j.content.replace(/\n/g,'')); // декодируем base64
+  return { ok:true, sha: j.sha, content };
+}
+
+async function updateIndexAppendImage(relativePath, filename, token, branch){
+  // получает index.html, добавляет секцию галереи или добавляет внутри существующей
+  const idx = await getIndex(branch, token);
+  if (!idx.ok){ log("Не удалось получить index.html:", idx.status); return {ok:false, reason: idx.json}; }
+  let html = idx.content;
+  const galleryId = 'gri-gallery';
+  const imgTag = `<a href="${relativePath}" target="_blank"><img src="${relativePath}" alt="${filename}" style="width:100%;height:auto;border-radius:8px"></a>`;
+  if (html.includes(`id="${galleryId}"`)){
+    // вставим внутрь существующего контейнера (последний вхождение закрывающего тега)
+    const marker = `id="${galleryId}"`;
+    const pos = html.indexOf(marker);
+    // найти открывающий <div ... id="gri-gallery" ...>
+    const divStart = html.lastIndexOf('<', pos);
+    // Найдем конец этого открывающего тега '>'
+    const openEnd = html.indexOf('>', pos);
+    // Найдем закрывающий тег </div> после openEnd
+    const closeDiv = html.indexOf('</div>', openEnd);
+    if (closeDiv !== -1){
+      // Вставляем перед closeDiv
+      html = html.slice(0, closeDiv) + '\n' + imgTag + '\n' + html.slice(closeDiv);
+    } else {
+      // если не нашли закрывающий тег — добавим в конец перед </body>
+      html = html.replace('</body>', `<section class="wrap gallery" id="${galleryId}">${imgTag}</section>\n</body>`);
+    }
+  } else {
+    // создаём новую секцию перед </body>
+    const galleryHtml = `\n<section class="wrap gallery" id="${galleryId}">\n  <h2>Галерея</h2>\n  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">\n    ${imgTag}\n  </div>\n</section>\n`;
+    html = html.replace('</body>', galleryHtml + '\n</body>');
+  }
+
+  // закодировать в base64
+  const contentBase64 = btoa(unescape(encodeURIComponent(html)));
+  const res = await putFile("index.html", contentBase64, token, branch, `Add image ${filename} to gallery`, idx.sha);
+  if (res.status >= 200 && res.status < 300){ log("index.html обновлён, изображение добавлено в галерею."); return {ok:true}; }
+  log("Не удалось обновить index.html:", JSON.stringify(res.json));
+  return {ok:false, res};
+}
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  document.getElementById('token').value = '';
+  log("Токен очищен из поля (если он был).");
+});
+
+document.getElementById('uploadBtn').addEventListener('click', async () => {
+  const token = document.getElementById('token').value.trim();
+  const branch = document.getElementById('branch').value.trim() || 'main';
+  const folder = document.getElementById('folder').value;
+  const files = document.getElementById('files').files;
+  const autoGallery = document.getElementById('addToGallery').checked;
+
+  if (!token){ alert("Вставьте ваш GitHub token в поле выше."); return; }
+  if (!files || files.length===0){ alert("Выберите по крайней мере один файл."); return; }
+
+  log(`Начинаю загрузку ${files.length} файла(ов) в assets/${folder}/ ...`);
+  for (let i=0;i<files.length;i++){
+    const file = files[i];
+    const fname = file.name.replace(/\s+/g,'_');
+    const path = `assets/${folder}/${fname}`;
+    try{
+      log(`-> ${fname} ...`);
+      const base64 = await fileToBase64(file);
+      const existingSha = await getFileSha(path, token, branch);
+      const message = existingSha ? `Update ${path}` : `Add ${path}`;
+      const put = await putFile(path, base64, token, branch, message, existingSha);
+      if (put.status >= 200 && put.status < 300){
+        log(`Файл ${fname} загружен успешно: ${path}`);
+        if (autoGallery && folder === 'images'){
+          const rel = `assets/${folder}/${fname}`;
+          const upd = await updateIndexAppendImage(rel, fname, token, branch);
+          if (!upd.ok) log("Ошибка при добавлении в галерею:", JSON.stringify(upd));
+        }
+      } else {
+        log(`Ошибка загрузки ${fname}:`, JSON.stringify(put.json));
+      }
+    } catch(err){
+      log("Ошибка:", err.message || err);
+    }
+  }
+  log("Загрузка завершена.");
+});
+</script>
+</body>
+</html>
