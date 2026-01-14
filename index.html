@@ -4,18 +4,48 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>GriBiotech — Позвольте вашим растениям позаботиться о себе сами</title>
-  <meta name="description" content="GriBiotech — интеллектуальная среда для растений.  Автономность, чистота, экологичность. Используют рестораны и офисы." />
+  <meta name="description" content="GriBiotech — интеллектуальная среда для растений. Автономность, чистота, экологичность." />
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Добавим немного стилей прямо сюда, чтобы история выглядела красиво */
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    .story-card {
+      background: #f0fdf4;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      border: 1px solid #dcfce7;
+    }
+    .story-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .story-card p {
+      padding: 20px;
+      font-size: 1.1rem;
+      color: #065f46;
+      line-height: 1.4;
+    }
+    .brand-img {
+      height: 45px;
+      width: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="index.html">
-        <svg width="40" height="40" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="48" height="48" rx="8" fill="#0f766e"/>
-          <path d="M14 32c6-8 10-12 20-12" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" fill="none"/>
-          <circle cx="34" cy="18" r="3.5" fill="#b8f0e1"/>
-        </svg>
+        <img src="assets/images/logo-new.png" alt="Logo" class="brand-img">
         <span class="brand-text">GriBiotech</span>
       </a>
 
@@ -23,7 +53,7 @@
         <a href="index.html">Главная</a>
         <a href="technology.html">Технология</a>
         <a href="cases.html">Кейсы</a>
-        <a href="about. html">О нас</a>
+        <a href="about.html">О нас</a>
         <a href="services.html">Услуги</a>
         <a href="investor.html">Инвесторам</a>
         <a href="contact.html">Контакты</a>
@@ -32,16 +62,14 @@
   </header>
 
   <main>
-    <!-- HERO:  видео во всю ширину -->
     <section class="hero-fullwidth">
       <video class="hero-video-full" autoplay muted loop playsinline poster="assets/images/1.jpg">
         <source src="assets/videos/1.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео. 
       </video>
       <div class="hero-overlay">
         <div class="wrap hero-content">
           <h1>Позвольте вашим растениям позаботиться о себе сами</h1>
-          <p class="hero-lead">Интеллектуальная среда GriBiotech — когда природа и технология создают идеальное равновесие.  Автономность, чистота, забота об окружающей среде. </p>
+          <p class="hero-lead">Интеллектуальная среда GriBiotech — когда природа и технология создают идеальное равновесие.</p>
           <div class="hero-buttons">
             <a class="btn btn-primary" href="contact.html">Связаться с нами</a>
             <a class="btn btn-outline-light" href="technology.html">Узнать технологию</a>
@@ -50,139 +78,59 @@
       </div>
     </section>
 
-    <!-- What is GriBiotech -->
-    <section class="section-what">
-      <div class="wrap what-grid">
-        <div class="what-text">
-          <h2>Что такое GriBiotech? </h2>
-          <p>Это не просто замена грунта — это программируемая интеллектуальная среда, которая дарует растениям полную автономность.  Микропористая 3D-матрица обеспечивает корни всем необходимым:  водой, питанием и кислородом.</p>
-          <p>Вместо ежедневного полива и борьбы с вредителями — чистое удовольствие от живой зелени в вашем пространстве. </p>
-          <a href="technology.html" class="link-arrow">Подробнее о технологии →</a>
-        </div>
-        <div class="what-visual">
-          <div class="visual-placeholder">
-            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#a7f3d0;stop-opacity:1" />
-                  <stop offset="100%" style="stop-color:#0f766e;stop-opacity:0.3" />
-                </linearGradient>
-              </defs>
-              <circle cx="150" cy="150" r="120" fill="url(#grad1)"/>
-              <circle cx="150" cy="120" r="30" fill="#0f766e" opacity="0.8"/>
-              <path d="M 150 150 L 140 180 M 150 150 L 160 180 M 150 150 L 150 190" stroke="#0f766e" stroke-width="2" fill="none" opacity="0.6"/>
-              <text x="150" y="250" text-anchor="middle" font-size="14" fill="#0f766e">Система 3-в-1</text>
-            </svg>
+    <section class="section-story" style="padding: 60px 0; background: #fff;">
+      <div class="wrap">
+        <h2 style="text-align: center; margin-bottom: 10px;">История одного спасения</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Как кубики GriBiotech меняют жизнь растений</p>
+        
+        <div class="story-grid">
+          <div class="story-card">
+            <img src="assets/images/scene1.jpg" alt="Проблема: мошки и увядание">
+            <p><strong>Проблема:</strong> Обычная земля — это грязь, мошки и постоянный риск перелить или засушить растение.</p>
+          </div>
+
+          <div class="story-card">
+            <img src="assets/images/scene2.jpg" alt="Решение: GriBiotech">
+            <p><strong>Решение:</strong> Наша 3D-матрица заменяет почву. Она чистая, стерильная и сама отдает воду корням.</p>
+          </div>
+
+          <div class="story-card">
+            <img src="assets/images/scene3.jpg" alt="Результат: Чистая победа">
+            <p><strong>Результат:</strong> Растение счастливо, в доме чистота, а вы свободны от ежедневного ухода!</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4 преимущества -->
     <section class="section-features">
       <div class="wrap">
-        <h2>Ключевые преимущества</h2>
+        <h2>Почему выбирают нас</h2>
         <div class="features-grid">
           <article class="feature-card">
             <div class="feature-icon">🌱</div>
-            <h3>Полная автономность</h3>
-            <p>Растения требуют полива всего 2 раза в год.  Идеально для отпусков, командировок и занятых людей.</p>
+            <h3>Автономность</h3>
+            <p>Полив всего 2 раза в год. Идеально для офисов и путешественников.</p>
           </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">💧</div>
-            <h3>Система 3-в-1</h3>
-            <p>Вода, питание и кислород в одной матрице. Растения получают всё необходимое в оптимальном соотношении.</p>
-          </article>
-
           <article class="feature-card">
             <div class="feature-icon">✨</div>
-            <h3>Безупречная чистота</h3>
-            <p>Без грунта — нет грязи, запахов и почвенных вредителей. Идеально для офисов, клиник и ресторанов.</p>
+            <h3>Чистота</h3>
+            <p>Никакой земли, пыли и насекомых. Только эстетика.</p>
           </article>
-
           <article class="feature-card">
             <div class="feature-icon">🌍</div>
-            <h3>Экологичность</h3>
-            <p>Экономия воды до 75%.  Производство на основе биосовместимых материалов и «зелёного синтеза».</p>
+            <h3>Экология</h3>
+            <p>Биосовместимые материалы и экономия воды до 75%.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- How it Works -->
-    <section class="section-how">
-      <div class="wrap">
-        <h2>Как это работает</h2>
-        <div class="steps-grid">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Интеграция</h3>
-            <p>Корни растения очищаются от старого грунта и помещаются в кашпо с активной средой GriBiotech.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>Адаптация</h3>
-            <p>Корневая система начинает взаимодействовать с матрицей, самостоятельно забирая воду и питание по мере необходимости.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Результат</h3>
-            <p>Вы получаете здоровое, активно растущее растение без ежедневного ухода и хлопот.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Галерея (автоматическая) -->
-    <section class="section-gallery">
-      <div class="wrap">
-        <h2>Примеры использования</h2>
-        <div class="gallery-grid" id="gallery-container">
-          <!-- Фото загружаются сюда автоматически -->
-        </div>
-        <p class="gallery-note">Галерея обновляется при загрузке новых фото</p>
-      </div>
-    </section>
-
-    <!-- Кейсы (превью) -->
-    <section class="section-cases-preview">
-      <div class="wrap">
-        <h2>Доверяют нам</h2>
-        <p class="section-subtitle">Рестораны и бизнесы выбирают GriBiotech для чистых и ухоженных зелёных пространств. </p>
-        <div class="cases-preview-grid">
-          <div class="case-preview-card">
-            <div class="case-preview-icon">🍽️</div>
-            <h3>GOGEN</h3>
-            <p>Премиальное заведение, где зелень украшает интерьер без хлопот и грязи.</p>
-          </div>
-
-          <div class="case-preview-card">
-            <div class="case-preview-icon">🌿</div>
-            <h3>ЦурЦум</h3>
-            <p>Ресторан с живыми растениями, которые требуют минимального обслуживания.</p>
-          </div>
-
-          <div class="case-preview-card">
-            <div class="case-preview-icon">🏢</div>
-            <h3>GoodWood</h3>
-            <p>Компания, которая создала биофильный офис с нашей технологией.</p>
-          </div>
-        </div>
-        <p class="cases-cta"><a href="cases.html" class="btn btn-secondary">Все кейсы →</a></p>
-      </div>
-    </section>
-
-    <!-- CTA финальный -->
     <section class="section-cta-final">
       <div class="wrap">
         <h2>Готовы создать свой зелёный рай?</h2>
-        <p>Свяжитесь с нами для консультации, заказа или партнёрства.</p>
         <div class="cta-buttons">
           <a class="btn btn-primary" href="contact.html">Связаться</a>
-          <a class="btn btn-outline" href="investor.html">Инвестиционное предложение</a>
+          <a class="btn btn-outline" href="investor.html">Для инвесторов</a>
         </div>
       </div>
     </section>
@@ -190,51 +138,9 @@
 
   <footer class="site-footer">
     <div class="wrap footer-content">
-      <div>
-        <h4>GriBiotech</h4>
-        <p>Интеллектуальная среда для растений</p>
-      </div>
-      <div>
-        <h4>Контакты</h4>
-        <p>Email: <a href="mailto: esderhov@gmail.com">esderhov@gmail.com</a></p>
-        <p>Телефон: <a href="tel:+79037117997">+7 903 711-79-97</a></p>
-      </div>
-      <div>
-        <h4>Навигация</h4>
-        <ul>
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="technology.html">Технология</a></li>
-          <li><a href="cases.html">Кейсы</a></li>
-          <li><a href="about.html">О нас</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="wrap footer-bottom">
-      <p>© GriBiotech — Все права защищены</p>
+      <p>© GriBiotech — Интеллектуальная среда для растений. 2026</p>
+      <p>Email: <a href="mailto:esderhov@gmail.com">esderhov@gmail.com</a></p>
     </div>
   </footer>
-
-  <script>
-    // Автоматическое отображение всех фото из assets/images/
-    fetch('https://api.github.com/repos/GriBiotech/GriBiotech.github.io/contents/assets/images')
-      .then(res => res.json())
-      .then(files => {
-        const gallery = document.getElementById('gallery-container');
-        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f. name));
-        
-        imageFiles.forEach(file => {
-          const img = document.createElement('a');
-          img.href = `assets/images/${file.name}`;
-          img.target = '_blank';
-          img. className = 'gallery-item';
-          img.innerHTML = `
-            <img src="assets/images/${file.name}" alt="Фото ${file. name}">
-            <div class="gallery-overlay"><span>Смотреть</span></div>
-          `;
-          gallery.appendChild(img);
-        });
-      })
-      .catch(err => console.log('Галерея загружается вручную'));
-  </script>
 </body>
 </html>
