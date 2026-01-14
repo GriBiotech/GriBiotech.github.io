@@ -3,12 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GriBiotech — Интеллектуальная среда для растений</title>
+  <title>GriBiotech — Интеллектуальная среда</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
     .brand-img { height: 40px; width: auto; margin-right: 10px; vertical-align: middle; }
-    /* Фикс для наложения текста на видео */
-    .hero-video-full { object-fit: cover; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: -1; }
+    /* Стили для галереи-комикса из твоей презентации */
+    .comic-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 0; }
+    .comic-item { border: 2px solid #eee; border-radius: 15px; overflow: hidden; background: #fff; }
+    .comic-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid #eee; }
+    .comic-text { padding: 15px; font-size: 0.95rem; line-height: 1.4; }
+    .step-badge { background: #0f766e; color: #fff; padding: 2px 8px; border-radius: 5px; font-size: 0.8rem; margin-bottom: 10px; display: inline-block; }
   </style>
 </head>
 <body>
@@ -31,46 +35,73 @@
   </header>
 
   <main>
-    <section class="hero-fullwidth" style="position: relative; overflow: hidden; height: 100vh;">
-      <video class="hero-video-full" autoplay muted loop playsinline poster="assets/images/1.jpg">
+    <section class="hero-fullwidth" style="position: relative; height: 100vh; overflow: hidden;">
+      <video class="hero-video-full" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
         <source src="assets/videos/1.mp4" type="video/mp4">
       </video>
-      <div class="hero-overlay" style="background: rgba(0,0,0,0.4); height: 100%;">
+      <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center;">
         <div class="wrap hero-content">
-          <h1>Выращивайте.<br>Не ухаживайте.</h1>
-          <p class="hero-lead">Автономное озеленение для офисов и отелей. Полив раз в 2–3 месяца. Ноль грязи. Ноль стресса.</p>
+          <h1 style="color: #fff; font-size: 4rem;">Выращивайте.<br>Не ухаживайте.</h1>
+          <p class="hero-lead" style="color: #eee;">Автономная среда для растений: полив раз в 2–3 месяца.</p>
           <div class="hero-buttons">
-            <a class="btn btn-primary" href="contact.html">Запросить презентацию</a>
+            <a class="btn btn-primary" href="contact.html">Запросить КП</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-features wrap" style="padding: 80px 0;">
-      <h2 style="text-align: center; margin-bottom: 50px;">Преимущества GriBiotech</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <img src="assets/images/clean.jpg" alt="Clean" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-          <h3>Безупречная чистота</h3>
-          <p>Полный отказ от земли исключает грязь, запахи и почвенных вредителей. Идеально для медицины.</p>
+    <section class="section-comic wrap" style="padding: 80px 0;">
+      <h2 style="text-align: center;">Реальность vs GriBiotech</h2>
+      <p style="text-align: center; color: #666;">Как технология решает ежедневные боли</p>
+      
+      <div class="comic-gallery">
+        <div class="comic-item">
+          <img src="assets/images/comic-1.jpg" alt="Грязь" class="comic-img">
+          <div class="comic-text">
+            <span class="step-badge">Проблема</span>
+            <p><strong>Грязь и мошки:</strong> Традиционная земля — это вечный источник пыли и насекомых в офисе.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <img src="assets/images/maintenance.jpg" alt="Maintenance" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-          <h3>Минимум обслуживания</h3>
-          <p>Визиты специалиста требуются всего 4-6 раз в год. Ваша команда занимается бизнесом, а не поливом.</p>
+        <div class="comic-item">
+          <img src="assets/images/comic-2.jpg" alt="Стресс" class="comic-img">
+          <div class="comic-text">
+            <span class="step-badge">Проблема</span>
+            <p><strong>Риск гибели:</strong> Забыли полить или перелили? Растение гибнет, деньги потрачены зря.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <img src="assets/images/health.jpg" alt="Health" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-          <h3>Здоровье растений</h3>
-          <p>3D-матрица исключает корневую гниль, обеспечивая 100% доступ кислорода и стабильное питание.</p>
+        <div class="comic-item" style="border-color: #0f766e;">
+          <img src="assets/images/comic-3.jpg" alt="Решение" class="comic-img">
+          <div class="comic-text">
+            <span class="step-badge" style="background: #34d399;">Решение</span>
+            <p><strong>GriBiotech:</strong> Умный гель сам дает воду и кислород. Обслуживание — раз в квартал.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #f8fafc; padding: 80px 0;">
+      <div class="wrap">
+        <div style="display: flex; gap: 40px; align-items: center;">
+          <div style="flex: 1;">
+            <h2>Технология «Зеленого синтеза»</h2>
+            <p>Мы заменили капризную почву на стабильную 3D-матрицу. Она не пахнет, не гниет и экономит 75% воды.</p>
+            <ul style="margin-top: 20px; line-height: 2;">
+              <li>✅ Чистота медицинского уровня</li>
+              <li>✅ Снижение затрат на уход в 5-10 раз</li>
+              <li>✅ Гарантированный рост без плесени</li>
+            </ul>
+          </div>
+          <div style="flex: 1;">
+            <img src="assets/images/tech-root.jpg" alt="Корни в матрице" style="width: 100%; border-radius: 20px;">
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-bottom">
-      <p>© GriBiotech 2026. Inspired by Nature. Built by Science.</p>
+    <div class="wrap">
+      <p>© GriBiotech 2026. Инженерный подход к живой природе.</p>
     </div>
   </footer>
 </body>
